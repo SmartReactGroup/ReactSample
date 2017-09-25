@@ -6,15 +6,24 @@ First install the app:
 ```shell
 $ git clone git@github.com:SmartReactGroup/ReactSample.git
 ```
+
 Then build modules:
 ```shell
 $ cd ReactSample
-$ npm install or yarn install
+$ npm install
+```
+or
+```shell
+$ yarn install
 ```
 
 Then, run:
 ```shell
-$ npm run dev or gulp dev
+$ npm run dev
+```
+or
+```shell
+$ gulp dev
 ```
 
 Currently, it's only support for development mode
