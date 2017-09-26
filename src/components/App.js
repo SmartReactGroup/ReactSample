@@ -10,7 +10,7 @@ export default class App extends React.Component {
     super()
 
     this.state = {
-      name: 'React-example'
+      name: 'React example'
     }
   }
 

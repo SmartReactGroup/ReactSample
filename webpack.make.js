@@ -84,7 +84,7 @@ module.exports = function makeWebpackConfig(mode) {
     // This is for development mode to reload page
     // Work with 'HotModuleReplacementPlugin'
     configs.entry.app.unshift(
-      'webpack-dev-server/client?http://localhost:8080/',
+      `webpack-dev-server/client?http://localhost:${devConfig.port}/`,
       'webpack/hot/dev-server'
     )
 
@@ -106,10 +106,7 @@ module.exports = function makeWebpackConfig(mode) {
    * Reference: http://webpack.github.io/docs/configuration.html#devserver
    * Reference: http://webpack.github.io/docs/webpack-dev-server.html
    */
-  configs.devServer = {
-    hot: true,
-    inline: true
-  }
+  configs.devServer = {}
 
   return configs
 }

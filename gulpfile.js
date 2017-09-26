@@ -6,6 +6,7 @@ const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 const stream = require('webpack-stream')
 const makeWebpackConfig = require('./webpack.make.js')
+const devConfig = require('./src/configs/development')
 
 // Clean task before webpack build
 gulp.task('clean', () => {
@@ -40,7 +41,7 @@ gulp.task('webpack-dev-server', () => {
       colors: true,
       chunk: false
     }
-  }).listen(8080, 'localhost', (err) => {
+  }).listen(devConfig.port, devConfig.host, (err) => {
     if (err) throw new gutil.PluginError('webpack-dev-server', err)
     gutil.log('[webpack-dev-server]', configs.output.publicPath)
   })
