@@ -35,6 +35,8 @@ gulp.task('webpack-dev-server', () => {
   // Start a webpack-dev-server
   new WebpackDevServer(webpack(configs), {
     publicPath: configs.output.publicPath,
+    contentBase: './src/',
+    historyApiFallback: true,
     stats: {
       modules: false,
       cached: false,

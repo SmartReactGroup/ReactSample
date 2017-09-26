@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 export default class Navbar extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ export default class Navbar extends React.Component {
     return (
       <div className="navbar">
         <h1>{this.props.appName}</h1>
+        <NavLink to="/about">about</NavLink>
         <button onClick={this.onShowNabar.bind(this)}>Show Navbar</button>
         {showNavbar && <h3> Navbar .. </h3>}
       </div>

@@ -89,6 +89,7 @@ module.exports = function makeWebpackConfig(mode) {
     )
 
     configs.plugins.push(
+      // This is for development mode to reload page
       new webpack.HotModuleReplacementPlugin(),
 
       // Reference: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
