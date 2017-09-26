@@ -9,7 +9,7 @@ const makeWebpackConfig = require('./webpack.make.js')
 
 // Clean task before webpack build
 gulp.task('clean', () => {
-  gulp.src('lib/build', { read: false })
+  gulp.src('dist', { read: false })
     .pipe(clean())
 })
 

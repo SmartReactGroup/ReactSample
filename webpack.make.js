@@ -11,7 +11,7 @@ module.exports = function makeWebpackConfig(mode) {
   const isProd = mode === 'prod'
 
   const DEV_PATH = `http://${devConfig.host}:${devConfig.port}/`
-  const PROD_PATH = path.join(__dirname, 'lib', 'build')
+  const PROD_PATH = path.join(__dirname, 'dist')
 
   // Main webpack configs
   const configs = {
@@ -20,18 +20,13 @@ module.exports = function makeWebpackConfig(mode) {
     },
     output: {
       path: PROD_PATH,
-      filename: isDev ? 'app.bundle.js' : '[name].[hash].js',
+      filename: isDev ? 'main.js' : '[name].[hash].js',
       publicPath: isDev ? DEV_PATH : PROD_PATH
     },
     module: {
       loaders: [
         {
           test: /\.js$/,
-          loader: 'babel-loader',
-          exclude: /node_modules/
-        },
-        {
-          test: /\.jsx?$/,
           loader: 'babel-loader',
           exclude: /node_modules/
         },
