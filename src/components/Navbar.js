@@ -31,7 +31,7 @@ export default class Navbar extends React.Component {
       <div className="navbar">
         <h1>{this.props.appName}</h1>
         <button onClick={this.onShowNabar.bind(this)}>Show Navbar</button>
-        {showNavbar &&  <h3> Navbar .. </h3>}
+        {showNavbar && <h3> Navbar .. </h3>}
       </div>
     )
   }

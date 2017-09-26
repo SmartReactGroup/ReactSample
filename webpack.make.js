@@ -2,28 +2,30 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const MinifyPlugin = require('babel-minify-webpack-plugin')
 const devConfig = require('./src/configs/development')
 
-// const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
-
 module.exports = function makeWebpackConfig(mode) {
-
-  const isTest = mode === 'test'
+  // Mode options
+  // const isTest = mode === 'test'
   const isDev = mode === 'dev'
   const isProd = mode === 'prod'
 
+  const DEV_PATH = `http://${devConfig.host}:${devConfig.port}/`
+  const PROD_PATH = path.join(__dirname, 'build')
+
+  // Main webpack configs
   const configs = {
     entry: {
       app: ['./src/index.js']
     },
     output: {
-      path: path.join(__dirname, "build"),
+      path: PROD_PATH,
       filename: isDev ? 'main.js' : '[name].[hash].js',
-      publicPath: isDev ? `http://${devConfig.host}:${devConfig.port}/` : path.join(__dirname, "build")
+      publicPath: isDev ? DEV_PATH : PROD_PATH
     },
     module: {
-      loaders: [{
+      loaders: [
+        {
           test: /\.js$/,
           loader: 'babel-loader',
           exclude: /node_modules/
@@ -35,56 +37,40 @@ module.exports = function makeWebpackConfig(mode) {
         },
         {
           test: /\.scss$/,
-          use: [{
-            loader: "style-loader" // creates style nodes from JS strings
-          }, {
-            loader: "css-loader" // translates CSS into CommonJS
-          }, {
-            loader: "sass-loader" // compiles Sass to CSS
-          }]
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            // resolve-url-loader may be chained before sass-loader if necessary
+            use: ['css-loader', 'sass-loader']
+          })
         }
       ]
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
-        filename: 'index.html',
+        template: './src/_index.html',
+        filename: isProd ? '../src/index.html' : 'index.html',
         inject: 'body'
       }),
 
       new ExtractTextPlugin({
         filename: isDev ? '[name].css' : '[name].[hash].css',
         disable: false,
-        allChunks: false
-      }),
-
-      // new MinifyPlugin({}, {
-      //   sourceMap: isDev ? 'eval-source-map' : 'source-map'
-      // })
+        allChunks: !isDev
+      })
     ],
   }
 
-  if (!isTest) {
-    // configs.plugins.push(new CommonsChunkPlugin({
-    //   name: 'commons',
-    //   // (the commons chunk name)
-
-    //   filename: 'commons.js',
-    //   // (with more entries, this ensures that no other module
-    //   //  goes into the vendor chunk)
-    // }));
-  }
-
   if (isProd) {
-    configs.devtool = "source-map"
-    configs.plugins.push(
-      // Reference: http://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
-      // Only emit files when there are no errors
-      new webpack.NoErrorsPlugin(),
+    // Production devtool should be "source-map"
+    configs.devtool = 'source-map'
 
-      // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
-      // Dedupe modules in the output
-      new webpack.optimize.DedupePlugin(),
+    configs.plugins.push(
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false,
+          drop_console: false,
+        }
+      }),
 
       // Reference: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
       // Define free global variables
@@ -97,11 +83,12 @@ module.exports = function makeWebpackConfig(mode) {
   }
 
   if (isDev) {
-    configs.devtool = "eval-source-map"
+    // Development devtool should be "eval-source-map"
+    configs.devtool = 'eval-source-map'
 
     configs.entry.app.unshift(
-      "webpack-dev-server/client?http://localhost:8080/",
-      "webpack/hot/dev-server"
+      'webpack-dev-server/client?http://localhost:8080/',
+      'webpack/hot/dev-server'
     )
 
     configs.plugins.push(
@@ -109,11 +96,11 @@ module.exports = function makeWebpackConfig(mode) {
 
       // Reference: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
       // Define free global variables
-      // new webpack.DefinePlugin({
-      //   'process.env': {
-      //     NODE_ENV: '"development"'
-      //   }
-      // })
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: '"development"'
+        }
+      })
     )
   }
 
@@ -125,7 +112,7 @@ module.exports = function makeWebpackConfig(mode) {
   configs.devServer = {
     hot: true,
     inline: true
-  };
+  }
 
   // configs.node = {
   //   global: false,
