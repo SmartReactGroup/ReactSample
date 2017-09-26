@@ -1,0 +1,33 @@
+{
+  "links": ["News", "Hot", "Videos", "Funny", "Social", "Sport"],
+  "blogs": [
+    {
+      "id": 1,
+      "author": {
+        "name": "kenny",
+        "image_url": "https://avatars2.githubusercontent.com/u/17617994?v=4&s=40"
+      },
+      "content": "Test blog 1",
+      "created_at": "Tue Sep 26 2017 12:57:38 GMT+0800 (China Standard Time)"
+    },
+    {
+      "id": 2,
+      "author": {
+        "name": "kenny",
+        "image_url": "https://avatars2.githubusercontent.com/u/17617994?v=4&s=40"
+      },
+      "content": "Test blog 2",
+      "created_at": "Tue Sep 26 2017 12:57:17 GMT+0800 (China Standard Time)"
+    },
+    {
+      "id": 3,
+      "author": {
+        "name": "kenny",
+        "image_url": "https://avatars2.githubusercontent.com/u/17617994?v=4&s=40"
+      },
+      "content": "Test blog 3",
+      "created_at": "Tue Sep 26 2017 12:57:47 GMT+0800 (China Standard Time)"
+    }
+  ],
+  "sliders": ["kenny", "jenny", "kevin"]
+}
