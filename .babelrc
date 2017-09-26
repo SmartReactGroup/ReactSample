@@ -3,5 +3,9 @@
     "es2015",
     "es2017",
     "react"
+  ],
+  "plugins": [
+    "add-module-exports",
+    "transform-export-extensions"
   ]
 }
