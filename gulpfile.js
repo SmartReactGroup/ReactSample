@@ -18,7 +18,7 @@ gulp.task('webpack', [], () => {
   const webpackConfig = makeWebpackConfig('prod')
 
   return gulp.src(webpackConfig.entry.app) // gulp looks for all source files under specified path
-    .pipe(sourcemaps.init())               // creates a source map which would be very helpful for debugging by maintaining the actual source code structure
+    .pipe(sourcemaps.init())               // creates a source map for debugging by maintaining the actual source code
     .pipe(stream(webpackConfig))           // blend in the webpack config into the source files
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(webpackConfig.output.path))
