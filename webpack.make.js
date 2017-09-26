@@ -5,13 +5,13 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const devConfig = require('./src/configs/development')
 
 module.exports = function makeWebpackConfig(mode) {
-  // Mode options
+
   // const isTest = mode === 'test'
   const isDev = mode === 'dev'
   const isProd = mode === 'prod'
 
   const DEV_PATH = `http://${devConfig.host}:${devConfig.port}/`
-  const PROD_PATH = path.join(__dirname, 'build')
+  const PROD_PATH = path.join(__dirname, 'lib', 'build')
 
   // Main webpack configs
   const configs = {
@@ -20,7 +20,7 @@ module.exports = function makeWebpackConfig(mode) {
     },
     output: {
       path: PROD_PATH,
-      filename: isDev ? 'main.js' : '[name].[hash].js',
+      filename: isDev ? 'app.bundle.js' : '[name].[hash].js',
       publicPath: isDev ? DEV_PATH : PROD_PATH
     },
     module: {
@@ -86,6 +86,8 @@ module.exports = function makeWebpackConfig(mode) {
     // Development devtool should be "eval-source-map"
     configs.devtool = 'eval-source-map'
 
+    // This is for development mode to reload page
+    // Work with 'HotModuleReplacementPlugin'
     configs.entry.app.unshift(
       'webpack-dev-server/client?http://localhost:8080/',
       'webpack/hot/dev-server'
@@ -113,14 +115,6 @@ module.exports = function makeWebpackConfig(mode) {
     hot: true,
     inline: true
   }
-
-  // configs.node = {
-  //   global: false,
-  //   process: true,
-  //   crypto: 'empty',
-  //   clearImmediate: false,
-  //   setImmediate: false
-  // };
 
   return configs
 }
