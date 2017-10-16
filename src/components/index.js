@@ -1,11 +1,5 @@
 export App from './App'
-export LeftNav from './LeftNav'
-export Main from './Main'
-export Navbar from './Navbar'
-export RightNavInfo from './RightNavInfo'
-export About from './About'
-export Home from './Home'
-export Login from './Login'
-export Slider from './Slider'
-export MingXing from './MingXing'
-export TouTiao from './TouTiao'
+export {
+  About,
+  Home
+} from './pages'

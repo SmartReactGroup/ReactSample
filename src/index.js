@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { Router } from 'react-router-dom'
 import { createBrowserHistory } from 'history'
 import { App } from './components'
-import './assets/styles/main.scss'
+import './components/app.scss'
 
 const history = createBrowserHistory()
 

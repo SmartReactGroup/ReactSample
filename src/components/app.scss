@@ -1,0 +1,116 @@
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+  margin:0;
+  padding: 0;
+}
+ol, ul {
+  list-style: none;
+}
+.app {
+  text-decoration: none;
+
+  .navbar {
+    color: #fff;
+  }
+
+  .home {
+    padding: 0 50px;
+    width: 100%;
+    .left-nav {
+      width: 10%;
+      min-height: 400px;
+      margin-right: 40px;
+      float: left;
+      .list-group {
+        width: 110px;
+        position: absolute;
+        padding: 0px;
+        margin: 0px;
+        top: 84px;
+        bottom: auto;
+        text-align:center;
+        .list-group-item {
+          width: 110px;
+          border: none;
+          .link-item {
+            display: block;
+            font-size: 18px;
+            border-radius: 3px;
+            height: 40px;
+            width: 110px;
+            line-height: 42px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: 0 8px;
+            text-decoration: none;
+            color: black;
+            &:hover, &.active {
+              background:linear-gradient(128deg, #fa2f2f 0%, #ff5b36 90%);
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+    .middle-content {
+      width: 58%;
+      min-height: 420px;
+      float: left;
+      .slick-list {
+        height: 30%;
+        margin-bottom: 2%;
+        img {
+          height: 330px;
+          width: 660px;
+        }
+      }
+      .main {
+        height: 60%;
+      }
+      article {
+        margin-top: 5px;
+      }
+    }
+
+    // .main {
+    //   width: 66%;
+    //   min-height: 400px;
+    //   margin-right: 2%;
+    //   background: yellow;
+    //   float: left;
+    // }
+
+    .right-nav {
+      width: 28%;
+      min-height: 400px;
+      float: right;
+        .login-part {
+          background: #f2f2f5;
+          padding: 20px;
+          margin-bottom: 20px;
+          .login {
+            padding: 0 15px 6px 15px;
+            border-radius: 2px;
+            box-shadow: 0 0 2px rgba(0,0,0,0.15);
+            min-height: 280px;
+            background: white;
+            .login-title{
+              text-align: center;
+              padding-top: 11px;
+              border-bottom-color: rgba(204,204,204,.5);
+              margin-bottom: 16px;
+              border-bottom: 1px solid #ccc;
+              line-height: 30px;
+            }
+          }
+        }
+        .right-nav-content {
+          background: #f2f2f5;
+          padding: 20px;
+          margin-bottom: 20px;
+        }
+
+
+    }
+  }
+}

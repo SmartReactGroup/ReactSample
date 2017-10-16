@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { Login } from '../components'
+import { Login } from '../../snippets'
 
-export default class RightNavInfo extends Component {
+export default class RightNav extends Component {
   constructor() {
     super()
     this.state = {

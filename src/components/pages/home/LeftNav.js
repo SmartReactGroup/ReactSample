@@ -9,19 +9,11 @@ export default class LeftNav extends Component {
     }
   }
 
-  localHref() {
-    // const location = this.props.location.href.substring(1)
-    console.log(this.props)
-    // return location
-  }
-
   setFilter(filter) {
     this.setState({ selected: filter })
   }
 
   isActive(value) {
-    console.log(this.state.selected)
-    console.log(`value ${value}`)
     const isActive = (value === this.state.selected) ? 'active' : 'default'
     const className = `link-item ${isActive}`
     return className
