@@ -31,7 +31,12 @@ export default class LeftNav extends Component {
             </div>
             <div>
               <li className="list-group-item">
-                <Link className={this.isActive('mingxing')} to="/mingxing" onClick={this.setFilter.bind(this, 'mingxing')}>明星</Link>
+                <Link
+                  className={this.isActive('mingxing')}
+                  to={{ pathname: '/about', search: '?title=mingxing', query: { n: '2' } }}
+                  onClick={this.setFilter.bind(this, 'mingxing')}>
+                  明星
+                </Link>
               </li>
             </div>
             <div>
